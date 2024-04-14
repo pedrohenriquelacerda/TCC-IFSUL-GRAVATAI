@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/images/favicon.png"
+    />
+    <title><%= title %></title>
+  </head>
+
+  <body class="flex flex-col min-h-screen" style="color: white;">
+    <header>
+      <nav class="p-3" style="background-color: #d6e6d4;">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center space-x-4 ml-1">
+            <a href="/">
+              <img
+                alt="Logo"
+                class="w-12 h-12"
+                src="/images/favicon.png"
+              />
+            </a>
+            <a href="/">
+              <span class="text-2xl font-bold" style="color: #015733;">Mon<span style="color: #20935d;">IF</span></span>
+            </a>
+          </div>
+
+          <!-- Links no lado direito com margem -->
+          <div class="flex items-center space-x-4 mr-4">
+            <!-- Primeiro link -->
+            <a
+              href="/capivara/listar"
+              class="text-white font-semibold <% if (!logged) { %> hidden <% } %>"
+              >Listar capivaras</a
+            >
+
+            <!-- Segundo link -->
+            <a
+              href="/capivara/cadastrar"
+              class="text-white font-semibold <% if (!logged) { %> hidden <% } %>"
+              >Adicionar capivaras</a
+            >
+
+            <!-- Terceiro link -->
+            <a
+              href="/login"
+              class="text-white font-semibold <% if (logged) { %> hidden <% } %>"
+              >Login</a
+            >
+
+            <!-- Quarto link -->
+            <a
+              href="/cadastro"
+              class="text-white font-semibold <% if (logged) { %> hidden <% } %>"
+              >Cadastro</a
+            >
+
+            <!-- Dropdown com a foto de perfil -->
+            <div
+              class="relative group inline-block <% if (!logged) { %> hidden <% } %>"
+            >
+              <div class="rounded-full overflow-hidden bg-gray-800">
+                <button
+                  class="bg-gray-800 p-2 rounded-full"
+                  aria-haspopup="true"
+                >
+                  <% if(locals.imagem) {%> <% if(locals.imagem.search("https")
+                  == -1){%>
+                  <img
+                    src="/imagens/<%=imagem %>"
+                    alt="Foto de perfil"
+                    class="w-10 h-10 rounded-full"
+                  />
+                  <% } else{%>
+                  <img
+                    src="<%=imagem%>"
+                    alt="Foto de perfil"
+                    class="w-10 h-10 rounded-full"
+                  />
+                  <% }%> <% } else{%>
+                  <img
+                    src="/imagens/userDefault.png"
+                    alt="Foto de perfil"
+                    class="w-10 h-10 rounded-full"
+                  />
+                  <%}%>
+                </button>
+              </div>
+
+              <!-- Conteúdo do dropdown -->
+              <ul
+                class="absolute hidden mt-2 space-y-2 bg-gray-200 text-gray-800 border border-gray-400 rounded-lg shadow-lg group-hover:block right-0"
+              >
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-300"
+                    >Perfil</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/caixaDeEntrada"
+                    class="block px-4 py-2 hover:bg-gray-300"
+                    >Mensagens</a
+                  >
+                </li>
+                <li>
+                  <a href="/logout" class="block px-4 py-2 hover:bg-gray-300"
+                    >Sair</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script type="text/javascript" src="/js/layout.js"></script>
+    </header>
+
+    <main class="flex-grow"><%- body %></main>
+
+    <footer class="p-2 mt-2" style="background-color: #d6e6d4; color: #015733;">
+      <div class="container mx-auto text-center">
+        <p>&copy; <%= new Date().getFullYear() %> Pedro Henrique Rosa Lacerda da Silva</p>
+      </div>
+    </footer>
+  </body>
+</html>
