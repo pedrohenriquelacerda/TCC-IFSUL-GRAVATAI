@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="/images/favicon.png"
-    />
+    <link rel="icon" type="image/x-icon" href="/images/icons/favicon.png" />
     <title><%= title %></title>
   </head>
 
-  <body class="flex flex-col min-h-screen" style="color: white;">
-    <header>
-      <nav class="p-3" style="background-color: #d6e6d4;">
+  <body class="h-screen flex flex-col" style="background-color: #e8e8e7">
+    <header class="flex w-full">
+      <nav class="p-3 w-full" style="background-color: #3f3d3d">
         <div class="flex items-center justify-between">
           <!-- Logo -->
           <div class="flex items-center space-x-4 ml-1">
@@ -22,31 +18,48 @@
               <img
                 alt="Logo"
                 class="w-12 h-12"
-                src="/images/favicon.png"
+                src="/images/icons/favicon.png"
               />
             </a>
             <a href="/">
-              <span class="text-2xl font-bold" style="color: #015733;">Mon<span style="color: #20935d;">IF</span></span>
+              <span class="text-2xl font-bold" style="color: #e8e8e7"
+                >Learn<span style="color: #e8e8e7">Lynk</span></span
+              >
             </a>
           </div>
 
           <!-- Links no lado direito com margem -->
           <div class="flex items-center space-x-4 mr-4">
             <!-- Primeiro link -->
+
             <a
               href="/capivara/listar"
-              class="text-white font-semibold <% if (!logged) { %> hidden <% } %>"
-              >Listar capivaras</a
+              class="text-white font-semibold text-xl <% if (!logged) { %> hidden <% } %>"
+              style="
+                border-right: 3px;
+                border-color: #e8e8e7;
+                border-style: solid;
+                padding-right: 1rem;
+              "
+              >Monitorias</a
             >
 
             <!-- Segundo link -->
             <a
               href="/capivara/cadastrar"
-              class="text-white font-semibold <% if (!logged) { %> hidden <% } %>"
-              >Adicionar capivaras</a
+              class="text-white font-semibold text-xl <% if (!logged) { %> hidden <% } %>"
+              style="
+                border-color: #e8e8e7;
+                border-style: solid;
+                padding-right: 1rem;
+                padding-left: 1rem;
+                margin-left: 0px;
+              "
+              >Alunos</a
             >
 
             <!-- Terceiro link -->
+
             <a
               href="/login"
               class="text-white font-semibold <% if (logged) { %> hidden <% } %>"
@@ -64,9 +77,13 @@
             <div
               class="relative group inline-block <% if (!logged) { %> hidden <% } %>"
             >
-              <div class="rounded-full overflow-hidden bg-gray-800">
+              <div
+                class="rounded-full overflow-hidden"
+                style="background-color: #3f3d3d"
+              >
                 <button
-                  class="bg-gray-800 p-2 rounded-full"
+                  class="p-2 rounded-full"
+                  style="background-color: #3f3d3d"
                   aria-haspopup="true"
                 >
                   <% if(locals.imagem) {%> <% if(locals.imagem.search("https")
@@ -74,13 +91,13 @@
                   <img
                     src="/imagens/<%=imagem %>"
                     alt="Foto de perfil"
-                    class="w-10 h-10 rounded-full"
+                    class="w-11 h-11 rounded-full"
                   />
                   <% } else{%>
                   <img
                     src="<%=imagem%>"
                     alt="Foto de perfil"
-                    class="w-10 h-10 rounded-full"
+                    class="w-11 h-11 rounded-full"
                   />
                   <% }%> <% } else{%>
                   <img
@@ -121,11 +138,22 @@
       <script type="text/javascript" src="/js/layout.js"></script>
     </header>
 
-    <main class="flex-grow"><%- body %></main>
+    <main
+      class="flex flex-1 bg-gray-100 overflow-auto"
+      style="background-color: #e8e8e75e"
+    >
+      <%- body %>
+    </main>
 
-    <footer class="p-2 mt-2" style="background-color: #d6e6d4; color: #015733;">
+    <footer
+      class="flex text-center"
+      style="background-color: #3f3d3d; color: #e8e8e7"
+    >
       <div class="container mx-auto text-center">
-        <p>&copy; <%= new Date().getFullYear() %> Pedro Henrique Rosa Lacerda da Silva</p>
+        <p>
+          &copy; <%= new Date().getFullYear() %> Pedro Henrique Rosa Lacerda da
+          Silva
+        </p>
       </div>
     </footer>
   </body>

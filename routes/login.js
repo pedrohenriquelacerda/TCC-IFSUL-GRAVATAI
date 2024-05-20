@@ -35,8 +35,8 @@ router.get("/google", (req, res, next) => {
 router.post(
   "/",
   passport.authenticate("local", {
-    successRedirect: "/", // Redirecionar para a página principal em caso de sucesso
-    failureRedirect: "/login?erro=2", // Redirecionar para a página de login com erro em caso de falha
+    successRedirect: "/",
+    failureRedirect: "/login?erro=2", 
   })
 );
 

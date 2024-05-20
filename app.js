@@ -1,21 +1,22 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
 require('dotenv').config();
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const expressLayouts = require("express-ejs-layouts");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
 const googleRouter = require("./routes/google");
 const loginRouter = require("./routes/login");
+const monitoriaRouter = require("./routes/monitoria");
 
-var app = express();
+const app = express();
 
 // Middleware de autenticação
 function authenticationMiddleware(req, res, next) {
@@ -27,7 +28,7 @@ function authenticationMiddleware(req, res, next) {
     return next();
   }
   if (req.path == "/google/callback") return next();
-  if (req.path === "/login") return next(); // Evita redirecionamento se já estiver na página de login
+  if (req.path === "/login") return next();
   res.redirect("/login?erro=1");
 }
 
@@ -75,6 +76,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/google", googleRouter);
 app.use("/login", loginRouter);
+app.use("/monitoria", authenticationMiddleware, monitoriaRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
